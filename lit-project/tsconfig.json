@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": ["ESNext", "dom"],
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
+    "strict": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "allowImportingTsExtensions": true,
+    "moduleResolution": "nodenext",
+    "forceConsistentCasingInFileNames": true,
+    "module": "NodeNext",
+    "plugins": [
+      {
+        "name": "ts-lit-plugin",
+        "rules": {
+          "no-incompatible-type-binding": "warning"
+        }
+      },
+      {
+        "name": "lit-plugin",
+        "rules": {
+          "no-incompatible-type-binding": "warning"
+        }
+      }
+    ],
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  },
+  "include": [
+    "src",
+    "test",
+    "node_modules/@open-wc/**/*.js",
+    "node_modules/@fhweb/**/*.js",
+    "src/**/*.json"
+  ],
+  "exclude": ["node_modules/!(@open-wc)"]
+}

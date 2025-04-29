@@ -5,7 +5,6 @@
       "name": "Player 1",
       "games": 1,
       "wins": 0,
-      "average_score": 10,
       "elo": 100
     },
     {
@@ -13,7 +12,6 @@
       "name": "Second Player",
       "games": 1,
       "wins": 1,
-      "average_score": 12,
       "elo": 100
     },
     {
@@ -21,7 +19,6 @@
       "name": "Third Player",
       "games": 1,
       "wins": 0,
-      "average_score": 6,
       "elo": 100
     }
   ],
