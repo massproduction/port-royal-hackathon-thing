@@ -1,12 +1,16 @@
 // uuid type string
 export type PlayerId = string;
 
+export type EloRating = number;
+
+export type EloRatings = Map<PlayerId, EloRating>;
+export type PlayerCount = 3 | 4 | 5;
+
 export type Player = {
   id: PlayerId;
   name: string;
   games: number;
   wins: number;
-  average_score: number;
   elo: number;
 };
 
