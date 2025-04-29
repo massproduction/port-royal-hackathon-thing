@@ -40,7 +40,13 @@ export class NewGameView extends LitElement {
           )}
         </div>
 
-        <sl-select placeholder="Select winner"> </sl-select>
+        <sl-select placeholder="Select winner">
+          ${this.inputs.map(
+            (inputValue, index) => html`
+              <sl-option value=${index}>${inputValue}</sl-option>
+            `
+          )}
+        </sl-select>
 
         <sl-button
           variant="primary"
