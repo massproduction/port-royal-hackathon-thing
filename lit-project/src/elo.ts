@@ -1,46 +1,62 @@
-import {PlayerId, Game, Player} from './types';
+import { PlayerId, Game, Player } from "./types";
 
-export type EloRating = number
+export type EloRating = number;
 
-function expected_value(player_one: EloRating, player_two: EloRating) : number {
-    return 1 / (1 + 10**((player_two - player_one)/400))
+function expectedValue(playerOne: EloRating, playerTwo: EloRating): number {
+  return 1 / (1 + 10 ** ((playerTwo - playerOne) / 400));
 }
 
-function new_rating(current_player: EloRating, opponent: EloRating, won: boolean, player_amount: number) : EloRating {
-    if (won == true) {
-        return current_player + 32*(1-expected_value(current_player, opponent))
+function newRating(
+  currentPlayer: EloRating,
+  opponent: EloRating,
+  won: boolean,
+  playerAmount: number
+): EloRating {
+  if (won == true) {
+    return currentPlayer + 32 * (1 - expectedValue(currentPlayer, opponent));
+  } else {
+    return (
+      currentPlayer +
+      (32 * (0 - expectedValue(currentPlayer, opponent))) / (playerAmount - 1)
+    );
+  }
+}
+
+function getAverageLoserRating(game: Game, players: Player[]): EloRating {
+  let sumOfElo = 0;
+  let totalLosers = 0;
+  for (const playerId of game.players) {
+    if (playerId !== game.winner) {
+      sumOfElo += players[playerId].elo;
+      totalLosers++;
+    }
+  }
+  return sumOfElo / totalLosers;
+}
+
+export type EloRatings = Map<PlayerId, EloRating>;
+
+function calculateNewRatings(game: Game, players: Player[]): EloRatings {
+  const ratings = new Map<PlayerId, EloRating>();
+  const eloOfLosers = getAverageLoserRating(game, players);
+  const playerAmount = game.players.length;
+  for (const playerId of game.players) {
+    if (playerId === game.winner) {
+      ratings.set(
+        playerId,
+        newRating(players[playerId].elo, eloOfLosers, true, playerAmount)
+      );
     } else {
-        return current_player + (32*(0-expected_value(current_player, opponent))/(player_amount -1))
+      ratings.set(
+        playerId,
+        newRating(
+          players[playerId].elo,
+          players[game.winner].elo,
+          false,
+          playerAmount
+        )
+      );
     }
-}
-
-function get_average_loser_rating(game: Game, players: Player[]) : EloRating {
-    let sum_of_elo = 0;
-    let total_losers = 0;
-    for (const player of game.players) {
-        if (player == game.winner) {
-
-        } else {
-            sum_of_elo += players[player].elo;
-            total_losers++;
-        }
-    }
-    return sum_of_elo / total_losers;
-}
-
-export type EloRatings = Map<PlayerId, EloRating>
-
-function calculate_new_ratings(game: Game, players: Player[]): EloRatings {
-    const dict = new Map<PlayerId, EloRating>;
-    const elo_of_losers = get_average_loser_rating(game, players);
-    const player_amount = game.players.length;
-    for (const player of game.players) {
-        if (player == game.winner) {
-            dict.set(player, new_rating(players[player], elo_of_losers, true, player_amount))
-        } else {
-            dict.set(player, new_rating(players[player], players[game.winner], false, player_amount))
-        }
-    }
-    return dict;
-
+  }
+  return ratings;
 }
