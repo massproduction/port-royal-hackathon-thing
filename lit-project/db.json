@@ -1,0 +1,58 @@
+{
+  "players": [
+    {
+      "id": "0",
+      "name": "Player 1",
+      "games": 1,
+      "wins": 0,
+      "average_score": 10,
+      "elo": 100
+    },
+    {
+      "id": "1",
+      "name": "Second Player",
+      "games": 1,
+      "wins": 1,
+      "average_score": 12,
+      "elo": 100
+    },
+    {
+      "id": "2",
+      "name": "Third Player",
+      "games": 1,
+      "wins": 0,
+      "average_score": 6,
+      "elo": 100
+    }
+  ],
+  "games": [{ "id": "0", "players": ["0", "1", "2"], "winner": "1" }],
+  "game_types": {
+    "3_players": {
+      "total": 1,
+      "wins": {
+        "first": 0,
+        "second": 1,
+        "third": 0
+      }
+    },
+    "4_players": {
+      "total": 0,
+      "wins": {
+        "first": 0,
+        "second": 0,
+        "third": 0,
+        "fourth": 0
+      }
+    },
+    "5_players": {
+      "total": 0,
+      "wins": {
+        "first": 0,
+        "second": 0,
+        "third": 0,
+        "fourth": 0,
+        "fifth": 0
+      }
+    }
+  }
+}
