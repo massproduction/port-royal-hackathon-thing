@@ -10,7 +10,7 @@
     "dev": "vite",
     "build": "rm -rf node_modules package-lock.json && npm install && vite build",
     "preview": "vite preview",
-    "json-server": "npx json-server public/db.json"
+    "json-server": "npx json-server db.json"
   },
   "dependencies": {
     "lit": "^3.2.1",
