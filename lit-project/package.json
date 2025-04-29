@@ -10,13 +10,15 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "json-server": "npx json-server db.json"
+    "json-server": "npx json-server public/db.json"
   },
   "dependencies": {
     "lit": "^3.2.1",
+    "uuid": "^11.1.0",
     "wretch": "^2.11.0"
   },
   "devDependencies": {
+    "@types/node": "^22.15.3",
     "json-server": "^1.0.0-beta.3",
     "vite": "^6.3.1"
   }
