@@ -9,13 +9,7 @@ export class NewGameView extends LitElement {
 
   constructor() {
     super();
-    this.inputs = ["", ""];
-  }
-
-  addInput() {
-    if (this.inputs.length < 5) {
-      this.inputs = [...this.inputs, ""];
-    }
+    this.inputs = ["", "", "", "", ""];
   }
 
   updateInput(event, index) {
@@ -36,21 +30,25 @@ export class NewGameView extends LitElement {
             (inputValue, index) => html`
               <div class="input-row">
                 <span>${index + 1}.</span>
-                <input
+                <sl-input
                   type="text"
                   .value=${inputValue}
                   @input=${(e) => this.updateInput(e, index)}
-                />
+                ></sl-input>
               </div>
             `
           )}
         </div>
-        <button @click=${this.addInput} ?disabled="${this.inputs.length >= 5}">
-          +
-        </button>
-        <button class="save-button" @click=${() => console.log(this.inputs)}>
+
+        <sl-select placeholder="Select winner"> </sl-select>
+
+        <sl-button
+          variant="primary"
+          class="save-button"
+          @click=${() => console.log(this.inputs)}
+        >
           Save
-        </button>
+        </sl-button>
       </div>
     `;
   }
@@ -83,20 +81,6 @@ export class NewGameView extends LitElement {
         display: flex;
         align-items: center;
         gap: 10px;
-      }
-
-      input {
-        width: 200px;
-      }
-
-      button {
-        width: 30px;
-        margin-top: 10px;
-        padding: 5px;
-      }
-
-      .save-button {
-        width: 100px;
       }
     `;
   }
