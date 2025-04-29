@@ -1,0 +1,8 @@
+services:
+  - type: static
+    name: lit-project
+    buildCommand: cd lit-project && npm install && npm run build
+    staticPublishPath: lit-project/dist
+    envVars:
+      - key: NODE_VERSION
+        value: 18.17.0 
